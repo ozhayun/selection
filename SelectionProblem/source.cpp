@@ -20,10 +20,9 @@ void print(Person* personArr, int size)
 	}
 }
 
-void main()
-{
-	Selection selection;
-	int numOfElem, kthOrderStatistic, randomNumComp = 0;
+void main() {
+	Selection s;
+	int numOfElem, kthOrderStatistic, randomNumComp = 0, heapNumComp = 0, bstNumComp = 0;
 	std::string line;
 	
 	cin >> numOfElem;
@@ -37,11 +36,16 @@ void main()
 	}
 
 	cin >> kthOrderStatistic;
+
 	vector<Person> randomSelectionVector(personArr);
 	vector<Person> heapSelectionVector(personArr);
 	vector<Person> bstSelectionVector(personArr);
 
-	
-	Person randomSelectionPerson = selection.RandSelection(randomSelectionVector, numOfElem, kthOrderStatistic, randomNumComp);
+	Person randomSelectionPerson = s.RandSelection(randomSelectionVector, numOfElem, kthOrderStatistic, randomNumComp);
+	//Person heapSelectionPerson = Selection::selectHeap(heapSelectionVector, numOfElem, kthOrderStatistic, heapNumComp);
+	//Person bstSelectionPerson = Selection::BST(bstSelectionVector, numOfElem, kthOrderStatistic, bstNumComp);
+
 	cout << "RandSelection: " << randomSelectionPerson.id << " " << randomSelectionPerson.name << " " << randomNumComp << " comparisons" << endl;
+	//cout << "RandSelection: " << heapSelectionPerson.id << " " << heapSelectionPerson.name << " " << heapNumComp << " comparisons" << endl;
+	//cout << "RandSelection: " << bstSelectionPerson.id << " " << bstSelectionPerson.name << " " << bstNumComp << " comparisons" << endl;
 }

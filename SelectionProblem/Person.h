@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 
-class Person
-{
+class Person {
 public:
 	int id;
 	std::string name;
