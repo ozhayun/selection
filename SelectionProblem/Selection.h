@@ -2,16 +2,15 @@
 #include "Person.h"
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <vector>
 
 using std::cout;
 using std::endl;
 using std::cin;
+using std::vector;
 
-class Selection
-{
-
-
-    
+class Selection {
 /*
 @ descripion:
     * This function takes last element
@@ -22,29 +21,28 @@ class Selection
     * to left of pivot and all greater
     * elements to right of pivot
 */
-    int partition(Person personArr[], int left, int right)
-    {
+    int partition(vector<Person>& personArr, int left, int right, int& NumComp) {
         // pivot
         const Person & pivot = personArr[right];
 
         // Index of smaller element
         int i = (left - 1);
 
-        for (int j = left; j <= right - 1; j++)
-        {
+        for (int j = left; j <= right - 1; j++) {
             // If current element is smaller
             // than or equal to pivot
             if (personArr[j].id <= pivot.id) {
-
+                NumComp++;
                 // increment index of
                 // smaller element
                 i++;
                 swap(personArr[i], personArr[j]);
             }
         }
-        swap(personArr[i + 1], personArr[right]);
+        swap(personArr[i+1], personArr[right]);
         return (i + 1);
     }
+
 
     /*
     @ params:
@@ -55,48 +53,47 @@ class Selection
         * Generates Random Pivot, swaps pivot with
         * end element and calls the partition function
     */
-    int partition_r(Person personArr[], int left, int right)
-    {
+    int partition_r(vector<Person>& personArr, int left, int right, int& NumComp) {
         // Generate a random number in between
         // low .. high
         srand(time(NULL));
+
         int random = left + rand() % (right - left);
 
-        // Swap A[random] with A[high]
         swap(personArr[random], personArr[right]);
 
-        return partition(personArr, left, right);
+        return partition(personArr, left, right, NumComp);
     }
-
 public:
-	Person Select(Person personArr[], int left, int right, int i)
-	{
+    const Person& RandSelectionUtil(vector<Person>& personArr, int left, int right, int k, int& NumComp) {
 		int pivot;
 		int leftPart;
 
-        pivot = partition_r(personArr, left, right);
+        if (left == right)
+            return personArr[left];
+
+        pivot = partition_r(personArr, left, right, NumComp);
 
 		leftPart = pivot - left + 1;
-		if (i == leftPart)
+		if (k == leftPart)
 			return personArr[pivot];
-		if (i < leftPart)
-			return Select(personArr, left, pivot - 1, i);
+		if (k < leftPart)
+			return RandSelectionUtil(personArr, left, pivot - 1, k, NumComp);
 		else
-			return Select(personArr, pivot + 1, right, i - leftPart);
+			return RandSelectionUtil(personArr, pivot + 1, right, k - leftPart, NumComp);
 	}
 
-	const Person& RandSelection(Person[], int n, int k, int& NumComp)
+    const Person& RandSelection(vector<Person>& personArr, int n, int k, int& NumComp) {
+        return RandSelectionUtil(personArr, 0, n - 1, k, NumComp);
+	}
+
+
+	const Person& selectHeap(vector<Person>& personArr, int n, int k, int& NumComp)
 	{
 
 	}
 
-
-	const Person& selectHeap(Person[], int n, int k, int& NumComp)
-	{
-
-	}
-
-	const Person& BST(Person[], int n, int k, int& NumComp)
+	const Person& BST(vector<Person>& personArr, int n, int k, int& NumComp)
 	{
 
 	}

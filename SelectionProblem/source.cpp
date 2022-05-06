@@ -2,10 +2,12 @@
 #include "Selection.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using std::cout;
 using std::endl;
 using std::cin;
+using std::vector;
 
 
 void print(Person* personArr, int size)
@@ -20,11 +22,13 @@ void print(Person* personArr, int size)
 
 void main()
 {
-	int numOfElem, requestedInd;
+	Selection selection;
+	int numOfElem, kthOrderStatistic, randomNumComp = 0;
 	std::string line;
 	
 	cin >> numOfElem;
-	Person* personArr = new Person[numOfElem];
+	vector<Person> personArr(numOfElem);
+	//Person* personArr = new Person[numOfElem];
 	for (int i = 0; i < numOfElem; i++)
 	{
 		cin >> personArr[i].id;
@@ -32,11 +36,12 @@ void main()
 		std::getline(cin, personArr[i].name);
 	}
 
-	cin >> requestedInd;
-	
-	Selection s;
-	
-	Person p = s.Select(personArr, 0, numOfElem, requestedInd);
-	cout << p.id << " " << p.name << endl;
+	cin >> kthOrderStatistic;
+	vector<Person> randomSelectionVector(personArr);
+	vector<Person> heapSelectionVector(personArr);
+	vector<Person> bstSelectionVector(personArr);
 
+	
+	Person randomSelectionPerson = selection.RandSelection(randomSelectionVector, numOfElem, kthOrderStatistic, randomNumComp);
+	cout << "RandSelection: " << randomSelectionPerson.id << " " << randomSelectionPerson.name << " " << randomNumComp << " comparisons" << endl;
 }
