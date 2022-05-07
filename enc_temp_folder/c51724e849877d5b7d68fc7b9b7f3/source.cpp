@@ -28,6 +28,10 @@ void main() {
 
 	cin >> kthOrderStatistic;
 
+	vector<Person> randomSelectionVector(personArr);
+	vector<Person> heapSelectionVector(personArr);
+	vector<Person> bstSelectionVector(personArr);
+
 	Person randomSelectionPerson = s.RandSelection(personArr, numOfElem, kthOrderStatistic, randomNumComp);
 	Person heapSelectionPerson = s.selectHeap(personArr, numOfElem, kthOrderStatistic, heapNumComp);
 	Person bstSelectionPerson = s.BST(personArr, numOfElem, kthOrderStatistic, bstNumComp);

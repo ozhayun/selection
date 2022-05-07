@@ -52,8 +52,7 @@ const Person& Random::SelectionUtil(vector<Person>& personArr, int left, int rig
         return SelectionUtil(personArr, pivot + 1, right, k - leftPart);
 }
 
-const Person& Random::Selection(vector<Person>& personArr, int n, int k, int& numComp) {
+const Person& Random::Selection(vector<Person>& personArr, int n, int k) {
     const Person& p = SelectionUtil(personArr, 0, n - 1, k);
-    numComp = _numComp;
     return p;
 }

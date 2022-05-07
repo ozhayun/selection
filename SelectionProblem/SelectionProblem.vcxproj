@@ -139,12 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BST.cpp" />
+    <ClCompile Include="MinHeap.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BST.h" />
+    <ClInclude Include="MinHeap.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Selection.h" />

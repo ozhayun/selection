@@ -35,6 +35,7 @@ class Random {
     const Person& SelectionUtil(vector<Person>& personArr, int left, int right, int k);
 
 public:
-    const Person& Selection(vector<Person>& personArr, int n, int k, int& numComp);
+    int getNumComp() { return _numComp; }
+    const Person& Selection(vector<Person>& personArr, int n, int k);
 };
 
