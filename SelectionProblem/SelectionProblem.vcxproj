@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="MinHeap.cpp" />
-    <ClCompile Include="Person.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="source.cpp" />
