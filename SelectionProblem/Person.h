@@ -18,5 +18,15 @@ public:
 		id = p.id;
 		name = std::string(p.name);
 	}
+
+	friend bool operator==(const Person& p1, const Person& p2)
+	{ 
+		if (p1.id == p2.id)
+			return true;
+		return false;
+	}
 };
+
+
+
 

@@ -18,6 +18,6 @@ class Selection {
 public:
 	const Person& RandSelection(vector<Person>& personArr, int n, int k, int& numComp);
 	const Person& selectHeap(vector<Person>& personArr, int n, int k, int& numComp);
-	const Person& BST(vector<Person>& personArr, int n, int k, int& numComp);
+	const Person& BSTselect(vector<Person>& personArr, int n, int k, int& numComp);
 };
 
