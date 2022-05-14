@@ -1,6 +1,7 @@
-#include "source.h"
 #include "Selection.h"
 #include "BST.h"
+#include "HandleInput.h"
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,28 +12,37 @@ using std::cin;
 using std::vector;
 
 
-void main() {
+int main() {
 	Selection s;
-	int numOfElem, kthOrderStatistic, randomNumComp = 0, heapNumComp = 0, bstNumComp = 0;
+	int seed, numOfElem, kthOrderStatistic, randomNumComp = 0, heapNumComp = 0, bstNumComp = 0;
 	std::string line;
 	
+	// For srand
+	cin >> seed;
+	srand(seed);
+	getchar();
+
+	// Get num of persons
 	cin >> numOfElem;
-	vector<Person> personArr(numOfElem);
-	//Person* personArr = new Person[numOfElem];
-	for (int i = 0; i < numOfElem; i++)
+	if (numOfElem > 0)
 	{
-		cin >> personArr[i].id;
-		getchar();
-		std::getline(cin, personArr[i].name);
+		vector<Person> personArr(numOfElem);
+		if (HandleInput::getPersonsData(personArr, numOfElem) && HandleInput::isValidSearch(numOfElem, kthOrderStatistic))
+		{
+			Person randomSelectionPerson = s.RandSelection(personArr, numOfElem, kthOrderStatistic, randomNumComp);
+			Person heapSelectionPerson = s.selectHeap(personArr, numOfElem, kthOrderStatistic, heapNumComp);
+			Person bstSelectionPerson = s.BSTselect(personArr, numOfElem, kthOrderStatistic, bstNumComp);
+
+			cout << "RandSelection: " << randomSelectionPerson.id << " " << randomSelectionPerson.name << " " << randomNumComp << " comparisons" << endl;
+			cout << "selectHeap: " << heapSelectionPerson.id << " " << heapSelectionPerson.name << " " << heapNumComp << " comparisons" << endl;
+			cout << "BST: " << bstSelectionPerson.id << " " << bstSelectionPerson.name << " " << bstNumComp << " comparisons" << endl;
+		}
+		else
+			cout << "invalid input" << endl;
 	}
-
-	cin >> kthOrderStatistic;
-
-	Person randomSelectionPerson = s.RandSelection(personArr, numOfElem, kthOrderStatistic, randomNumComp);
-	Person heapSelectionPerson = s.selectHeap(personArr, numOfElem, kthOrderStatistic, heapNumComp);
-	Person bstSelectionPerson = s.BST(personArr, numOfElem, kthOrderStatistic, bstNumComp);
-
-	cout << "RandSelection: " << randomSelectionPerson.id << " " << randomSelectionPerson.name << " " << randomNumComp << " comparisons" << endl;
-	cout << "selectHeap: " << heapSelectionPerson.id << " " << heapSelectionPerson.name << " " << heapNumComp << " comparisons" << endl;
-	cout << "BST: " << bstSelectionPerson.id << " " << bstSelectionPerson.name << " " << bstNumComp << " comparisons" << endl;
+	else
+		cout << "invalid input" << endl;
 }
+	
+	
+	

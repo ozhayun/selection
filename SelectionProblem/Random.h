@@ -2,7 +2,6 @@
 
 #include "Person.h"
 #include <vector>
-#include <ctime>
 
 using std::vector;
 

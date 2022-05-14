@@ -1,7 +1,6 @@
 #include "BST.h"
 
-struct node;
-
+// This function make BST empty
 BST::node* BST::makeEmpty(node* t) {
     if (t == NULL)
         return NULL;
@@ -13,6 +12,7 @@ BST::node* BST::makeEmpty(node* t) {
     return NULL;
 }
 
+// This function insert new person to tree
 BST::node* BST::insert(Person x, node* t) {
     if (t == NULL) {
         t = new node;
@@ -26,6 +26,7 @@ BST::node* BST::insert(Person x, node* t) {
     return t;
 }
 
+// This function find minimum key (person id)
 BST::node* BST::findMin(node* t) {
     if (t == NULL)
         return NULL;
@@ -35,6 +36,7 @@ BST::node* BST::findMin(node* t) {
         return findMin(t->left);
 }
 
+// This function find maximum key (person id)
 BST::node* BST::findMax(node* t) {
     if (t == NULL)
         return NULL;
@@ -44,6 +46,7 @@ BST::node* BST::findMax(node* t) {
         return findMax(t->right);
 }
 
+// This function remove id from BST
 BST::node* BST::remove(int id, node* t) {
     node* temp;
     if (t == NULL)
@@ -65,10 +68,10 @@ BST::node* BST::remove(int id, node* t) {
             t = t->left;
         delete temp;
     }
-
     return t;
 }
 
+// This function find person by id
 BST::node* BST::find(node* t, int id) {
     if (t == NULL)
         return NULL;
@@ -80,6 +83,7 @@ BST::node* BST::find(node* t, int id) {
         return t;
 }
 
+// This function print BST inorder
 void BST::inorder(node* t) {
     if (t == NULL)
         return;
@@ -88,16 +92,18 @@ void BST::inorder(node* t) {
     inorder(t->right);
 }
 
+// This function return tree size
 int BST::size(node* root) {
     //base case
     if (root == NULL)
         return 0;
 
-    //recursive call to left child and right child and
+    // recursive call to left child and right child and
     // add the result of these with 1 ( 1 for counting the root)
     return 1 + size(root->left) + size(root->right);
 }
 
+// This function select the kth key in BST
 BST::node* BST::select(node* x, int k) {
     if (x == NULL) return NULL;
     int t = size(x->left);

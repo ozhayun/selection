@@ -23,10 +23,6 @@ int Random::partition(vector<Person>& personArr, int left, int right) {
 }
 
 int Random::partition_r(vector<Person>& personArr, int left, int right) {
-    // Generate a random number in between
-    // low .. high
-    srand(time(NULL));
-
     int random = left + rand() % (right - left);
 
     swap(personArr[random], personArr[right]);

@@ -22,15 +22,17 @@ class MinHeap
     int left(int i) { return (2 * i + 1); }
     // to get index of right child of node at index i
     int right(int i) { return (2 * i + 2); }
-
+    // get the parent of node
     int parent(int i) { return (i - 1) / 2; }
-
+    // fix the heap
     void fixHeap(int i);
+
 public:
-    // Constructor
     void buildHeap(vector<Person> & personArr);
     int getNumComp() { return _numComp; }
     Person deleteMin();
     void insert(Person p);
+    bool isEmpty() { return heapSize == 0; }
+    void makeEmpty();
 };
 
